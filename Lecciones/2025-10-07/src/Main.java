@@ -32,6 +32,9 @@ public class Main {
         boolean experiencia = false;
 
         System.out.println("Experiencia: " + experiencia);
+
+
+        final String NUMERO_DNI = "45434259J"; // Esta variable no se puede modificar
     }
 
 }
