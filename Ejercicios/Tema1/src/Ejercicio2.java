@@ -12,7 +12,7 @@ public class Ejercicio2 {
 
         // Creando una variable para cada modificación de la puntuación
         int puntuacion2 = 0;
-        int primeraModificacion = puntuacion + 5;
+        int primeraModificacion = puntuacion2 + 5;
         int segundaModificacion = primeraModificacion + 5;
         int puntuacionFinal = segundaModificacion + 5;
         System.out.println("Puntuación inicial: " + puntuacion2);
