@@ -1,3 +1,5 @@
+import model.Multiplicacion;
+
 public class Entrada {
     public static void main(String[] args) {
         System.out.println("Proyecto métodos");
@@ -8,6 +10,8 @@ public class Entrada {
         Operaciones operacionesMatematicas = new Operaciones();
         operacionesMatematicas.sumar(1, 4);
         operacionesMatematicas.restar(8, 2);
+        Multiplicacion multiplicacion = new Multiplicacion();
+        multiplicacion.multiplicacion(2, 5);
     }
 
     public static void saludar(String nombre){
