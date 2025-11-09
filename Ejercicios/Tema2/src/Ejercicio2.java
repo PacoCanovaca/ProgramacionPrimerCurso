@@ -9,12 +9,14 @@ public class Ejercicio2 {
         int firstNum = scanner.nextInt();
         System.out.println("Introduce el segundo número");
         int secondNum = scanner.nextInt();
+
         boolean firstBigger = firstNum > secondNum;
         boolean secondBigger = secondNum > firstNum;
         boolean equalNumbers = firstNum == secondNum;
         boolean diffNumbers = firstNum != secondNum;
         boolean firstBiggerEqual = firstNum >= secondNum;
         boolean secondBiggerEqual = secondNum >= firstNum;
+
         System.out.println("¿" + firstNum + " es mayor que " + secondNum + "?: " + firstBigger);
         System.out.println("¿" + firstNum + " es menor que " + secondNum + "?: " + secondBigger);
         System.out.println("¿" + firstNum + " es igual que " + secondNum + "?: " + equalNumbers);
