@@ -23,6 +23,22 @@ public class TextAnalyser {
     }
 
     public String firstLongWord(String text, int minimumLength) {
-
+        String word = "";
+        String longestWord = "";
+        for (char character : text.toLowerCase().toCharArray()) {
+            if (character >= 'a' && character <= 'z') {
+                word += String.valueOf(character);
+            } else {
+                if (word.length() > longestWord.length()) {
+                    longestWord = word;
+                }
+                word = "";
+            }
+        }
+        if (longestWord.length() > minimumLength) {
+            return longestWord;
+        } else {
+            return "Ninguna palabra supera la longitud mínima";
+        }
     }
 }
