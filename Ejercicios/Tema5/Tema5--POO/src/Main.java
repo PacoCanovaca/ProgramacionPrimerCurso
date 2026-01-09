@@ -1,5 +1,3 @@
-import Ressources.Estudiante;
-
 import java.util.Scanner;
 
 public class Main {
@@ -45,6 +43,14 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Estudiante estudiante1 = new Estudiante("Laura Fernández", 25);
         estudiante1.setNota(scanner);
+
+        // Ejercicio 7
+        Producto producto1 = new Producto("Teclado", 45.99, 10);
+        System.out.println(producto1.toString());
+        Producto producto2 = new Producto("Ratón", 25.50, 25);
+        System.out.println(producto2.toString());
+        Producto producto3 = new Producto("Monitor", 299.99, 5);
+        System.out.println(producto3.toString());
 
     }
 

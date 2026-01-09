@@ -1,5 +1,3 @@
-package Ressources;
-
 import java.util.Scanner;
 
 public class Estudiante {
@@ -10,7 +8,7 @@ public class Estudiante {
     public Estudiante(String nombre, int edad) {
         this.nombre = nombre;
         this.edad = edad;
-        System.out.printf("Estudiante: %s, %d años%n", nombre, edad);
+        System.out.printf("Estudiante: %s, %d años%n", this.nombre, this.edad);
     }
 
     public void setNota(Scanner scanner) {
