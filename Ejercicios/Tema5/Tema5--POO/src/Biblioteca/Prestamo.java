@@ -1,12 +1,15 @@
 package Biblioteca;
 
+import java.time.LocalDate;
+
 public class Prestamo {
     private Libro libro;
     private Usuario usuario;
-    private String fechaPrestamo;
+    private LocalDate fechaPrestamo;
+    private int numeroPrestamo;
     private boolean terminado;
 
-    public Prestamo(Libro libro, Usuario usuario, String fechaPrestamo) {
+    public Prestamo(Libro libro, Usuario usuario, LocalDate fechaPrestamo) {
         System.out.printf("Usuario %s (Socio %d) intenta tomar prestado %s%n", usuario.getNombre(), usuario.getNumeroSocio(), libro.getTitulo());
         if (libro.isDisponible()) {
             this.libro = libro;
