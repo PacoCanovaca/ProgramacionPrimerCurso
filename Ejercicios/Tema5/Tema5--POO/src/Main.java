@@ -50,7 +50,41 @@ public class Main {
         Producto producto2 = new Producto("Ratón", 25.50, 25);
         System.out.println(producto2.toString());
         Producto producto3 = new Producto("Monitor", 299.99, 5);
-        System.out.println(producto3.toString());
+        System.out.println(producto3.toString() + "\n");
+
+        // Ejercicio 7.1.
+        Cliente cliente1 = new Cliente("Carlos Ruiz", "carlos.ruiz@email.com", new Direccion("Calle Mayor 15", "Madrid", "28001"));
+        System.out.println(cliente1.toString() + "\n");
+
+        // Ejercicio 8
+        Empleado[] listaEmpleados = new Empleado[5];
+        listaEmpleados[0] = new Empleado("Ana Pérez", "Desarrolladora", 35000);
+        listaEmpleados[1] = new Empleado("Luis García", "Diseñador", 28000);
+        listaEmpleados[2] = new Empleado("María Torres", "Project Manager", 42000);
+        listaEmpleados[3] = new Empleado("Jorge Diaz", "Analista", 32000);
+        listaEmpleados[4] = new Empleado("Laura Sánchez", "Tester", 26000);
+        System.out.println("Lista de empleados:");
+        for (int i = 0; i < listaEmpleados.length; i++) {
+            System.out.printf("%d. %s%n", i+1, listaEmpleados[i].toString());
+        }
+        Empleado mejorPagado = listaEmpleados[0];
+        double total = 0;
+        for (Empleado empleado : listaEmpleados) {
+            if (empleado.getSalario() > mejorPagado.getSalario()) {
+                mejorPagado = empleado;
+            }
+            total += empleado.getSalario();
+        }
+        double avg = total / listaEmpleados.length;
+        System.out.printf("%nEmpleado con mayor salario: %s (%.2f€)%n", mejorPagado.getNombre(), mejorPagado.getSalario());
+        System.out.printf("Salario promedio: %.2f%n%n", avg);
+
+        // Ejercicio 9
+        Calculadora.sumar(10, 5);
+        Calculadora.restar(10, 5);
+        Calculadora.multiplicar(10, 5);
+        Calculadora.dividir(10, 5);
+        Calculadora.elevarAPotencia(2, 3);
 
     }
 
