@@ -12,6 +12,4 @@ public class Libro {
     private String titulo, autor, ISBN;
     private boolean disponible;
 
-
-
 }

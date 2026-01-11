@@ -9,13 +9,13 @@ import java.util.Scanner;
 @NoArgsConstructor
 
 public class Biblioteca {
-    private ArrayList<Libro> biblioteca = new ArrayList<Libro>();
-    private ArrayList<Usuario> listaUsuarios = new ArrayList<Usuario>();
-    private ArrayList<Prestamo> listaPrestamos = new ArrayList<Prestamo>();
+    private static ArrayList<Libro> biblioteca = new ArrayList<Libro>();
+    private static ArrayList<Usuario> listaUsuarios = new ArrayList<Usuario>();
+    private static ArrayList<Prestamo> listaPrestamos = new ArrayList<Prestamo>();
 
     // Añadir libro a la biblioteca (siempre en disponible)
 
-    public void anadirLibro(Scanner scanner) {
+    private static void anadirLibro(Scanner scanner) {
         System.out.print("Introduce el título: ");
         String titulo = scanner.next();
         System.out.print("Introduce el autor: ");
@@ -28,7 +28,7 @@ public class Biblioteca {
 
     // Mostrar libros disponibles
 
-    public void mostrarLibrosDisponibles() {
+    private static void mostrarLibrosDisponibles() {
         System.out.println("Libros disponibles: ");
         for (Libro libro : biblioteca) {
             if (libro.isDisponible()) {
@@ -40,11 +40,11 @@ public class Biblioteca {
 
     // Crear usuario
 
-    public void anadirUsuario(Scanner scanner) {
+    private static void anadirUsuario(Scanner scanner) {
         System.out.print("Nombre del usuario: ");
         String nombre = scanner.next();
         int numeroSocio;
-        if (listaUsuarios.size() == 0) {
+        if (listaUsuarios.isEmpty()) {
             numeroSocio = 1;
         } else {
             numeroSocio = listaUsuarios.getLast().getNumeroSocio() + 1;
@@ -52,48 +52,86 @@ public class Biblioteca {
         listaUsuarios.add(new Usuario(nombre, numeroSocio));
     }
 
-    // Crear préstamo
+    // Buscar usuario
 
-    public void hacerPrestamo(Scanner scanner) {
+    private static Usuario buscarUsuario(Scanner scanner) {
         System.out.print("Introduce el número de socio: ");
         int numeroSocio = scanner.nextInt();
         Usuario usuario = null;
-        for (int i = 0; i < listaUsuarios.size(); i++) {
-            if (listaUsuarios.get(i).getNumeroSocio() == numeroSocio) {
-                usuario = listaUsuarios.get(i);
-                return;
+        for (Usuario item : listaUsuarios) {
+            if (item.getNumeroSocio() == numeroSocio) {
+                usuario = item;
+                System.out.println("Usuario encontrado.");
+                break;
             }
         }
-        if (usuario == null) {
-            System.out.printf("El número de socio introducido no corresponde a ningún usuario existente. Inténtalo de nuevo.");
-            return;
-        }
+        return usuario;
+    }
+
+    // Buscar libro
+
+    private static Libro buscarLibro(Scanner scanner) {
         System.out.print("Introduce el ISBN del libro: ");
         String ISBN = scanner.next();
         Libro libro = null;
-        for (int i = 0; i < biblioteca.size(); i++) {
-            if (biblioteca.get(i).getISBN().equalsIgnoreCase(ISBN)) {
-                libro = biblioteca.get(i);
-                return;
+        for (Libro item : biblioteca) {
+            if (item.getISBN().equalsIgnoreCase(ISBN)) {
+                libro = item;
+                System.out.println("Libro encontrado.");
+                break;
             }
         }
-        if (libro == null) {
-            System.out.printf("El ISBN introducido no corresponde a ningún libro existente. Inténtalo de nuevo.");
+        return libro;
+    }
+
+    // Crear préstamo
+
+    private static void hacerPrestamo(Scanner scanner) {
+        Usuario usuario = buscarUsuario(scanner);
+        if (usuario == null) {
+            System.out.println("El número de socio introducido no corresponde a ningún usuario existente. Inténtalo de nuevo.");
             return;
         }
-        listaPrestamos.add(new Prestamo(libro, usuario, LocalDate.now()));
-
+        Libro libro = buscarLibro(scanner);
+        if (libro == null) {
+            System.out.println("El ISBN introducido no corresponde a ningún libro existente. Inténtalo de nuevo.");
+            return;
+        }
+        Prestamo prestamo = new Prestamo(libro, usuario, LocalDate.now());
+        prestamo.setNumeroPrestamo(listaPrestamos.size() + 1);
+        listaPrestamos.add(prestamo);
     }
 
-    // todo Devolver libro prestado
+    // Buscar préstamo
 
-    public void devolverLibro(Scanner scanner) {
-        
+    private static Prestamo buscarPrestamo(Scanner scanner) {
+        System.out.print("Introduce el número de préstamo: ");
+        int numeroPrestamo = scanner.nextInt();
+        Prestamo prestamo = null;
+        for (Prestamo item : listaPrestamos) {
+            if (item.getNumeroPrestamo() == numeroPrestamo) {
+                prestamo = item;
+                System.out.println("Préstamo encontrado.");
+                break;
+            }
+        }
+        return prestamo;
     }
 
-    // todo Gestionar biblioteca
+    // Devolver libro prestado
 
-    public void gestionarBiblioteca(Scanner scanner) {
+    private static void devolverLibro(Scanner scanner) {
+        Prestamo prestamo = buscarPrestamo(scanner);
+        if (prestamo == null) {
+            System.out.println("El número de préstamo introducido no corresponde a ningún préstamo existente. Inténtalo de nuevo.");
+            return;
+        }
+        prestamo.devolverLibro();
+    }
+
+    // Gestionar biblioteca
+
+    public static void gestionarBiblioteca(Scanner scanner) {
         System.out.print("¿Cuántos libros hay en la biblioteca?: ");
         int libros = scanner.nextInt();
         for (int i = 0; i < libros; i++) {
@@ -102,20 +140,17 @@ public class Biblioteca {
         }
         int opcion;
         do {
-            System.out.printf("%n--MENÚ--%n\t1. Añadir un libro%n\t2. Mostrar libros disponibles%n\t3. Añadir usuario%n\t4. Prestar un libro%n\t5. Devolver un libro%n%n");
+            System.out.printf("%n--MENÚ--%n\t1. Añadir un libro%n\t2. Mostrar libros disponibles%n\t3. Añadir usuario%n\t4. Prestar un libro%n\t5. Devolver un libro%n\t6. Salir%n%n");
             System.out.print("Introduce tu opción: ");
             opcion = scanner.nextInt();
             switch (opcion) {
-                case 1 -> {
-                    mostrarLibrosDisponibles();
-                }
-                case 2 -> {
-
-                }
+                case 1 -> anadirLibro(scanner);
+                case 2 -> mostrarLibrosDisponibles();
+                case 3 -> anadirUsuario(scanner);
+                case 4 -> hacerPrestamo(scanner);
+                case 5 -> devolverLibro(scanner);
+                case 6 -> System.out.println("Saliendo...");
             }
-        } while (opcion != 5);
+        } while (opcion != 6);
     }
-
-
-
 }

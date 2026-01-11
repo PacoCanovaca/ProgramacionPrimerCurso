@@ -1,6 +1,12 @@
 package Biblioteca;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.LocalDate;
+
+@Getter
+@Setter
 
 public class Prestamo {
     private Libro libro;
@@ -9,7 +15,7 @@ public class Prestamo {
     private int numeroPrestamo;
     private boolean terminado;
 
-    public Prestamo(Libro libro, Usuario usuario, LocalDate fechaPrestamo) {
+    protected Prestamo(Libro libro, Usuario usuario, LocalDate fechaPrestamo) {
         System.out.printf("Usuario %s (Socio %d) intenta tomar prestado %s%n", usuario.getNombre(), usuario.getNumeroSocio(), libro.getTitulo());
         if (libro.isDisponible()) {
             this.libro = libro;
@@ -27,7 +33,7 @@ public class Prestamo {
         }
     }
 
-    public void devolverLibro() {
+    protected void devolverLibro() {
         System.out.printf("%nUsuario %s devuelve %s%n", usuario.getNombre(), libro.getTitulo());
         System.out.println("✓ Libro devuelto\n");
         libro.setDisponible(true);
