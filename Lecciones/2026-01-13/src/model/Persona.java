@@ -12,10 +12,7 @@ public abstract class Persona {
         this.apellido = apellido;
     }
 
-    // TODO darle una vuelta de abstracción
-    public void saludar() {
-        System.out.println("Vamos a saludar");
-    }
+    public abstract void saludar();
 
     public void mostrarDatos() {
         System.out.println("nombre = " + nombre);

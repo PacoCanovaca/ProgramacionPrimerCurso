@@ -40,6 +40,11 @@ public class Alumno extends Persona {
         System.out.println("curso = " + curso);
     }
 
+    @Override
+    public void saludar() {
+        System.out.println("Soy un alumno y voy a aprender un montón");
+    }
+
     public void realizarExamen() {
         System.out.println("Vamos a realizar un examen");
         int nota = (int) (Math.random()*11);

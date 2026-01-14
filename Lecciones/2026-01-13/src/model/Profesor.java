@@ -17,11 +17,20 @@ public class Profesor extends Persona {
         this.nExperiencia = nExperiencia;
     }
 
+    public void corregirExamen() {
+
+    }
+
     @Override
     public void mostrarDatos() {
         super.mostrarDatos();
         System.out.println("salario = " + salario);
         System.out.println("nExperiencia = " + nExperiencia);
+    }
+
+    @Override
+    public void saludar() {
+        System.out.println("Soy un profesor y voy a enseñarte");
     }
 
     public int getnExperiencia() {
