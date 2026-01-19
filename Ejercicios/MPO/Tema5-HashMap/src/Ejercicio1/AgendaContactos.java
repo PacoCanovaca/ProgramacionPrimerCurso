@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class AgendaContactos {
 
-    private HashMap<String, String> agendaContactos = new HashMap<>();
+    private final HashMap<String, String> agendaContactos = new HashMap<>();
 
     public AgendaContactos(){}
 
