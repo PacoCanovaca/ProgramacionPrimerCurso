@@ -1,6 +1,6 @@
 package model;
 
-public class LlamadaLocal extends Llamada {
+public class LlamadaLocal extends Llamada implements Regulable {
 
     public LlamadaLocal(){}
 
@@ -21,4 +21,8 @@ public class LlamadaLocal extends Llamada {
         super.mostrarDatos();
     }
 
+    @Override
+    public boolean regularNumeros() {
+        return getNOrigen()%2==0;
+    }
 }

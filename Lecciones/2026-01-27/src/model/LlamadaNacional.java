@@ -8,7 +8,7 @@ import java.sql.SQLOutput;
 @Getter
 @Setter
 
-public class LlamadaNacional extends Llamada implements Tarificable{
+public final class LlamadaNacional extends Llamada implements Tarificable, Regulable {
 
     private int franja;
 
@@ -43,5 +43,10 @@ public class LlamadaNacional extends Llamada implements Tarificable{
         System.out.println("Llamada NACIONAL");
         super.mostrarDatos();
         System.out.println("Franja =" + franja);
+    }
+
+    @Override
+    public boolean regularNumeros() {
+        return getNOrigen()%2==0 && getNDestino()%2==0 && getDuracion()%2==0;
     }
 }
