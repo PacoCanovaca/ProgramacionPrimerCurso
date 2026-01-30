@@ -1,5 +1,6 @@
 package controller;
 
+import lombok.Getter;
 import model.Audio;
 import model.ElementoMultimedia;
 import model.Libro;
@@ -7,6 +8,8 @@ import model.Video;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
+@Getter
 
 public class ControladorColeccion {
 
@@ -90,6 +93,75 @@ public class ControladorColeccion {
         for (ElementoMultimedia item : coleccion) {
             item.mostrarDatos();
         }
+    }
+
+    public void buscarPorAutor() {
+        System.out.println("Introduce el autor: ");
+        String autor = scanner.next();
+        System.out.println("Lista de libros de " + autor + ":");
+        boolean hayLibros = false;
+        for (int i = 0; i < coleccion.size(); i++) {
+            if (coleccion.get(i) instanceof Libro) {
+                Libro libro = (Libro) coleccion.get(i);
+                if (autor.equalsIgnoreCase(libro.getAutor())) {
+                    System.out.println("- " + libro.getTitulo());
+                    hayLibros = true;
+                }
+            }
+        }
+        if (!hayLibros) {
+            System.out.println("No se han encontrado libros de " + autor);
+        }
+        System.out.println();
+    }
+
+    public void buscarPorDirector() {
+        System.out.println("Introduce el director: ");
+        String director = scanner.next();
+        System.out.println("Lista de películas de " + director + ":");
+        boolean hayVideos = false;
+        for (int i = 0; i < coleccion.size(); i++) {
+            if (coleccion.get(i) instanceof Video) {
+                Video video = (Video) coleccion.get(i);
+                if (director.equalsIgnoreCase(video.getDirector())) {
+                    System.out.println("- " + video.getTitulo());
+                    hayVideos = true;
+                }
+            }
+        }
+        if (!hayVideos) {
+            System.out.println("No se han encontrado películas de " + director);
+        }
+        System.out.println();
+    }
+
+    private boolean buscarActor(Video video, String actorBuscado) {
+        for (String actor : video.getActores()) {
+            if (actorBuscado.equalsIgnoreCase(actor)) {
+                System.out.println("- " + video.getTitulo());
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void buscarPorActor() {
+        System.out.println("Introduce el actor: ");
+        String actor = scanner.next();
+        System.out.println("Lista de películas de " + actor + ":");
+        boolean hayVideos = false;
+        for (int i = 0; i < coleccion.size(); i++) {
+            if (coleccion.get(i) instanceof Video) {
+                Video video = (Video) coleccion.get(i);
+                if (buscarActor(video, actor)) {
+                    hayVideos = true;
+                }
+            }
+        }
+        if (!hayVideos) {
+            System.out.println("No se han encontrado películas de " + actor);
+        }
+        System.out.println();
     }
 
 }
