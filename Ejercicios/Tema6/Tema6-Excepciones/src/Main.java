@@ -1,5 +1,7 @@
 import model.Ejercicios;
+import util.EdadInvalidaExcepcion;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -63,6 +65,43 @@ public class Main {
             }
         } while (!transformado);
          */
+
+        /* Ejercicio 4
+        try {
+            System.out.print("Introduce tu edad: ");
+            int edad = scanner.nextInt();
+            ejercicios.validarEdad(edad);
+            System.out.println("Edad válida: " + edad + " años.");
+        } catch (EdadInvalidaExcepcion e) {
+            System.out.println(e.getMessage());
+        }
+         */
+
+        /* Ejercicio 5
+        try {
+            System.out.print("Introduce el primer número: ");
+            int num1 = scanner.nextInt();
+            System.out.print("Introduce el segundo número: ");
+            int num2 = scanner.nextInt();
+            System.out.print("Introduce la operación (+, -, *, /): ");
+            String operacion = scanner.next();
+            switch (operacion) {
+                case "+" -> System.out.println("Resultado: " + (num1 + num2));
+                case "-" -> System.out.println("Resultado: " + (num1 - num2));
+                case "*" -> System.out.println("Resultado: " + (num1 * num2));
+                case "/" -> System.out.println("Resultado: " + (num1 / num2));
+            }
+
+        } catch (ArithmeticException e) {
+            System.out.println("Error: no se puede dividir por cero.");
+        } catch (InputMismatchException e) {
+            System.out.println("Error: debes introducir números enteros.");
+        } catch (Exception e) {
+            System.out.println("Error genérico.");
+        } finally {
+            System.out.println("Fin del programa.");
+        }
+        */
 
     }
 }

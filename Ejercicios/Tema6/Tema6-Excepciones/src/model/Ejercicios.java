@@ -1,5 +1,7 @@
 package model;
 
+import util.EdadInvalidaExcepcion;
+
 public class Ejercicios {
 
     public Ejercicios() {}
@@ -10,6 +12,14 @@ public class Ejercicios {
 
     public int transformarTextoANumero(String num) throws NumberFormatException{
         return Integer.parseInt(num);
+    }
+
+    public void validarEdad(int edad) throws EdadInvalidaExcepcion {
+        if (edad < 0) {
+            throw new EdadInvalidaExcepcion("Error: La edad no puede ser negativa.");
+        } else if (edad > 120) {
+            throw new EdadInvalidaExcepcion("Error: La edad no puede ser mayor a 120.");
+        }
     }
 
 }
