@@ -25,7 +25,7 @@ public class Producto {
         System.out.println("Nombre del producto: " + nombre);
         System.out.println("Categoría : " + categoria);
         System.out.println("Código: " + codigo);
-        System.out.println("Precio: " + precio + "€");
+        System.out.printf("Precio: %.2f€%n%n", precio);
     }
 
     public String getCategoria() {

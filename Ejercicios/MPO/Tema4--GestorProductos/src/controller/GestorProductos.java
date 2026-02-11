@@ -53,15 +53,15 @@ public class GestorProductos {
     }
 
     public Optional<Producto> buscarPorCodigo(String codigo) {
+        System.out.println("Buscando producto...");
         return listaProductos.stream().filter(producto -> producto.getCodigo().equalsIgnoreCase(codigo)).findFirst();
     }
 
     public void ordenarPorPrecioDesc() {
-        listaProductos.sort(Comparator.comparingDouble(Producto::getPrecio));
+        listaProductos.sort(Comparator.comparingDouble(Producto::getPrecio).reversed());
     }
 
     public List<Producto> getProductosPorCondicion(Predicate<Producto> condicion) {
         return listaProductos.stream().filter(condicion).toList();
     }
-
 }
