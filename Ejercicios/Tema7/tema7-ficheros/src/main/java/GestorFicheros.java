@@ -1,4 +1,7 @@
 import java.io.*;
+import java.nio.file.Files;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class GestorFicheros {
 
@@ -52,6 +55,46 @@ public class GestorFicheros {
                 System.out.println("Error: no se ha podido cerrar el lector");
             }
         }
+    }
+
+    public void copiarArchivo(String original, String copia) {
+        InputStream in = null;
+        OutputStream out = null;
+        try {
+            in = new FileInputStream(original);
+            out = new FileOutputStream(copia);
+            in.transferTo(out);
+            System.out.println("Contenido copiado con éxito");
+        } catch (FileNotFoundException e) {
+            System.out.println("Error: archivo no encontrado");
+        } catch (IOException e) {
+            System.out.println("Error: no se puede transferir la información");
+        } finally {
+            try {
+                in.close();
+                out.close();
+            } catch (IOException e) {
+                System.out.println("Error: no se puede cerrar el Stream");
+            }
+
+        }
+
+    }
+
+    public void obtenerInformacion(String path) {
+        File file = new File(path);
+        System.out.println("Información del archivo: " + path);
+        double tamanioMb = (double) file.length() / 1000000;
+        System.out.printf("- Tamaño: %d bytes (%.1f MB)%n", file.length(), tamanioMb);
+        Date fecha = new Date(file.lastModified());
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        System.out.printf("- Última modificación: %s%n", formatoFecha.format(fecha));
+        String permisoLectura = file.canRead() ? "Sí" : "No";
+        String permisoEscritura = file.canWrite() ? "Sí" : "No";
+        String permisoEjecucion = file.canExecute() ? "Sí" : "No";
+        System.out.printf("- Permisos: Lectura (%s), Escritura (%s), Ejecución (%s)%n", permisoLectura, permisoEscritura, permisoEjecucion);
+        System.out.printf("- Archivo oculto: %s%n", file.isHidden() ? "sí" : "no");
+        System.out.printf("- Ruta absoluta: %s%n", file.getAbsolutePath());
     }
 
 }
