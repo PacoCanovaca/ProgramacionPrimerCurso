@@ -29,9 +29,17 @@ public class Main {
         gestorFicheros.copiarArchivo(pathOrigen, pathDestino);
          */
 
+        /* Ejercicio 4
         System.out.println("Introduce la ruta del archivo: ");
         String path = scanner.next();
         gestorFicheros.obtenerInformacion(path);
+         */
+
+        /* Ejercicio 5
+        System.out.print("Introduce la ruta del archivo: ");
+        String path = scanner.next();
+        gestorFicheros.contarLineas(path);
+         */
 
     }
 

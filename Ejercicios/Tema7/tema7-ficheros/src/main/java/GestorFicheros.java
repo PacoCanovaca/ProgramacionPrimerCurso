@@ -97,4 +97,28 @@ public class GestorFicheros {
         System.out.printf("- Ruta absoluta: %s%n", file.getAbsolutePath());
     }
 
+    public void contarLineas(String path) {
+        File file = new File(path);
+        BufferedReader bufferedReader = null;
+        try {
+            bufferedReader = new BufferedReader(new FileReader(file));
+            String linea = null;
+            int contador = 0;
+            while ((linea = bufferedReader.readLine()) != null) {
+                contador++;
+            }
+            System.out.printf("El archivo contiene %d líneas%n", contador);
+        } catch (NullPointerException e) {
+            System.out.println("Error: no se ha encontrado el archivo");
+        } catch (IOException e) {
+            System.out.println("Error: no se ha podido leer el archivo");
+        } finally {
+            try {
+                bufferedReader.close();
+            } catch (IOException e) {
+                System.out.println("Error: no se ha podido cerrar el lector");
+            }
+        }
+    }
+
 }
