@@ -1,0 +1,5 @@
+Esto es un ejemplo de lectura de ficheros
+Esto es otra línea en el fichero
+Los flujos de ficheros:
+    Entrantes: lecturas -> obtengo el contenido
+    Salientes: escrituras -> saco el contenido
