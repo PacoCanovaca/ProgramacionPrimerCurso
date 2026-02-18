@@ -41,6 +41,21 @@ public class Main {
         gestorFicheros.contarLineas(path);
          */
 
+        /* Ejercicio 6
+        System.out.println("Introduce la ruta del archivo:");
+        String path = scanner.next();
+        gestorFicheros.escribirCsv(path);
+        gestorFicheros.leerFichero(path);
+         */
+
+        /* Ejercicio 7
+        System.out.println("Introduce la ruta del fichero:");
+        String path = scanner.next();
+        gestorFicheros.explorarDirectorio(path);
+         */
+
+        // El ejercicio 8 puedo hacerlo con un HashMap de palabras que incluya su frecuencia. Después, ordeno la lista de claves según los valores en orden descendente
+
     }
 
 }

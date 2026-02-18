@@ -2,6 +2,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Scanner;
 
 public class GestorFicheros {
 
@@ -83,7 +84,7 @@ public class GestorFicheros {
 
     public void obtenerInformacion(String path) {
         File file = new File(path);
-        System.out.println("Información del archivo: " + path);
+        System.out.println("- Nombre: " + file.getName());
         double tamanioMb = (double) file.length() / 1000000;
         System.out.printf("- Tamaño: %d bytes (%.1f MB)%n", file.length(), tamanioMb);
         Date fecha = new Date(file.lastModified());
@@ -94,7 +95,7 @@ public class GestorFicheros {
         String permisoEjecucion = file.canExecute() ? "Sí" : "No";
         System.out.printf("- Permisos: Lectura (%s), Escritura (%s), Ejecución (%s)%n", permisoLectura, permisoEscritura, permisoEjecucion);
         System.out.printf("- Archivo oculto: %s%n", file.isHidden() ? "sí" : "no");
-        System.out.printf("- Ruta absoluta: %s%n", file.getAbsolutePath());
+        System.out.printf("- Ruta absoluta: %s%n%n", file.getAbsolutePath());
     }
 
     public void contarLineas(String path) {
@@ -120,5 +121,52 @@ public class GestorFicheros {
             }
         }
     }
+
+    public void escribirCsv(String path) {
+        Scanner scanner = new Scanner(System.in);
+        File file = new File(path);
+        PrintWriter writer = null;
+
+        try {
+            writer = new PrintWriter(new FileWriter(file));
+            writer.println("Nombre,Edad,Calificación");
+            for (int i = 1; i <= 3; i++) {
+                System.out.printf("Introduce el nombre del alumno %d: ", i);
+                String nombre = scanner.next();
+                System.out.print("Introduce su edad: ");
+                int edad = scanner.nextInt();
+                System.out.print("Introduce su calificación: ");
+                double calificacion = scanner.nextDouble();
+                writer.printf("%s,%d,%.1f%n", nombre, edad, calificacion);
+            };
+        } catch (IOException e) {
+            System.out.println("Error en la escritura");
+        } finally {
+            scanner.close();
+            try {
+                writer.close();
+            } catch (Exception e) {
+                System.out.println("Error en el cerrado");
+            }
+        }
+    }
+
+    public void explorarDirectorio(String path) {
+        File file = new File(path);
+        if (!file.isDirectory()) {
+            System.out.println("Este fichero no es un directorio");
+            return;
+        }
+        File[] elementos = file.listFiles();
+        for (File elemento : elementos) {
+            if (elemento.isFile()) {
+                System.out.println("[ARCHIVO]");
+            } else {
+                System.out.println("[DIRECTORIO]");
+            }
+            obtenerInformacion(elemento.getAbsolutePath());
+        }
+    }
+
 
 }
