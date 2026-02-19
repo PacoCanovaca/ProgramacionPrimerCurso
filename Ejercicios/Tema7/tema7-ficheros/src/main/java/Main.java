@@ -56,6 +56,10 @@ public class Main {
 
         // El ejercicio 8 puedo hacerlo con un HashMap de palabras que incluya su frecuencia. Después, ordeno la lista de claves según los valores en orden descendente
 
+        System.out.println("Introduce la ruta del archivo:");
+        String path = scanner.next();
+        gestorFicheros.contarPalabras(path);
+
     }
 
 }

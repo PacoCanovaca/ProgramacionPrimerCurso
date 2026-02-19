@@ -1,8 +1,7 @@
 import java.io.*;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Scanner;
+import java.util.*;
 
 public class GestorFicheros {
 
@@ -165,6 +164,56 @@ public class GestorFicheros {
                 System.out.println("[DIRECTORIO]");
             }
             obtenerInformacion(elemento.getAbsolutePath());
+        }
+    }
+
+    private AparicionPalabras encontrarPalabra(ArrayList<AparicionPalabras> aparicionesPalabras, String palabra) {
+        for (AparicionPalabras item : aparicionesPalabras) {
+            if (item.getPalabra().equalsIgnoreCase(palabra)) {
+                return item;
+            }
+        }
+        return null;
+    }
+
+    public void contarPalabras(String path) {
+        File file = new File(path);
+        int totalPalabras = 0;
+        ArrayList<AparicionPalabras> aparicionesPalabras = new ArrayList<>();
+        BufferedReader lector = null;
+        try {
+            lector = new BufferedReader(new FileReader(file));
+            String linea = null;
+            String[] palabras = null;
+            while ((linea = lector.readLine()) != null) {
+                palabras = linea.split(" ");
+                for (String palabra : palabras) {
+                    totalPalabras++;
+                    AparicionPalabras coincidencia = encontrarPalabra(aparicionesPalabras, palabra);
+                    if (coincidencia != null) {
+                        coincidencia.setApariciones(coincidencia.getApariciones() + 1);
+                    } else {
+                        aparicionesPalabras.add(new AparicionPalabras(palabra, 1));
+                    }
+                }
+            }
+            System.out.println("Número total de palabras: " + totalPalabras);
+            List<AparicionPalabras> aparicionesOrdenadas = aparicionesPalabras.stream().sorted(Comparator.comparingInt(AparicionPalabras::getApariciones).reversed()).toList();
+            System.out.println("\nLas 5 palabras más frecuentes:");
+            for (int i = 0; i < 5; i++) {
+                AparicionPalabras palabraActual = aparicionesOrdenadas.get(i);
+                System.out.printf("%d. %s: %d veces%n", i+1, palabraActual.getPalabra(), palabraActual.getApariciones());
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Error: archivo no encontrado");
+        } catch (IOException e) {
+            System.out.println("Error: no es posible leer el archivo");
+        } finally {
+            try {
+                lector.close();
+            } catch (IOException e) {
+                System.out.println("Error: no se ha podido cerrar el fichero");
+            }
         }
     }
 
