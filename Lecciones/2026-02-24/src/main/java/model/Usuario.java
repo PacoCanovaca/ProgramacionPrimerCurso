@@ -1,6 +1,10 @@
-package Ejercicio9.model;
+package model;
 
-public class Usuario {
+import java.io.Serializable;
+
+public class Usuario implements Serializable {
+
+    private static long serialVersionID = 1L;
 
     private final String nombre, apellido, dni;
 

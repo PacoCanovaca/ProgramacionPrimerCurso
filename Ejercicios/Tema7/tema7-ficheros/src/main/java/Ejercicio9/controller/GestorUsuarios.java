@@ -27,9 +27,7 @@ public class GestorUsuarios {
 
     public void listarUsuarios() {
         System.out.println("Lista de usuarios:");
-        for (Usuario usuario : listaUsuarios) {
-            usuario.mostrarDatos();
-        }
+        listaUsuarios.forEach(Usuario::mostrarDatos);
         System.out.println();
     }
 
@@ -39,7 +37,7 @@ public class GestorUsuarios {
         try {
             writer = new PrintWriter(new FileWriter(file));
             for (Usuario usuario : listaUsuarios) {
-                writer.printf("%s,%s,%s%n", usuario.getNombre(), usuario.getApellido(), usuario.getDni());
+                writer.println(usuario);
             }
             System.out.println("Exportación realizada con éxito.\n");
             listaUsuarios.clear();
@@ -63,9 +61,7 @@ public class GestorUsuarios {
             String[] datos = null;
             while ((linea = lector.readLine()) != null) {
                 datos = linea.split(",");
-                if (!linea.isEmpty()) {
-                    listaUsuarios.add(new Usuario(datos[0], datos[1], datos[2]));
-                }
+                listaUsuarios.add(new Usuario(datos[0], datos[1], datos[2]));
             }
             System.out.println("Importación realizada con éxito.\n");
         } catch (FileNotFoundException e) {
