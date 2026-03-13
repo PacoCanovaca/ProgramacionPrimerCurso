@@ -31,10 +31,17 @@ public class Product {
     private String[] images;
     private String thumbnail;
     
-    public void mostrarDatos() {
+    public void mostrarDatos1() {
         System.out.println("ID = " + id);
         System.out.println("Title = " + title);
         System.out.println("Price = " + price);
+        System.out.println();
+    }
+
+    public void mostrarDatos2() {
+        System.out.println("Title = " + title);
+        System.out.println("Description = " + description);
+        System.out.println("Category = " + category);
         System.out.println();
     }
 }

@@ -1,6 +1,8 @@
 import controller.ProductsController;
 import model.UserController;
 
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -13,10 +15,27 @@ public class Main {
 
          */
 
+        /* Ejercicio 2
         ProductsController productsController = new ProductsController();
         productsController.importarProductos();
         productsController.mostrarInfoProductos();
 
-    }
+         */
 
+        /* Ejercicio 3
+        Scanner scanner = new Scanner(System.in);
+        ProductsController productsController = new ProductsController();
+        System.out.print("Introduce el id del producto a buscar: ");
+        long id = scanner.nextLong();
+
+        Forma 1
+        productsController.buscarProducto(id);
+
+        Forma 2
+        productsController.importarProductos();
+        productsController.buscarProductoPorId(id);
+
+         */
+
+    }
 }
