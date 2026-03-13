@@ -1,3 +1,4 @@
+import controller.PlaceholderController;
 import controller.ProductsController;
 import model.UserController;
 
@@ -34,6 +35,13 @@ public class Main {
         Forma 2
         productsController.importarProductos();
         productsController.buscarProductoPorId(id);
+
+         */
+
+        /* Ejercicio 4
+
+        PlaceholderController placeholderController = new PlaceholderController();
+        placeholderController.printInfo();
 
          */
 
