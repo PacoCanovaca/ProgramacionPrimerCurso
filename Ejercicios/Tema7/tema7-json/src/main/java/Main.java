@@ -1,7 +1,10 @@
 import controller.PlaceholderController;
+import controller.PokemonController;
 import controller.ProductsController;
 import model.UserController;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Scanner;
 
 public class Main {
@@ -44,6 +47,17 @@ public class Main {
         placeholderController.printInfo();
 
          */
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Introduce el nombre del pokemon: ");
+        String pokemon = scanner.next();
+        try {
+            URL url = new URL("https://pokeapi.co/api/v2/pokemon/" + pokemon);
+            PokemonController pokemonController = new PokemonController(url);
+            pokemonController.mostrarDatos();
+        } catch (MalformedURLException e) {
+            System.out.println("El nombre de pokemon introducido es incorrecto");
+        }
 
     }
 }
