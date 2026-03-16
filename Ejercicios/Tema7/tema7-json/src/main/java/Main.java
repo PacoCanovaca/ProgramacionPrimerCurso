@@ -1,6 +1,7 @@
 import controller.PlaceholderController;
 import controller.PokemonController;
 import controller.ProductsController;
+import controller.TriviaController;
 import model.UserController;
 
 import java.net.MalformedURLException;
@@ -48,6 +49,8 @@ public class Main {
 
          */
 
+        /* Ejercicio 5
+
         Scanner scanner = new Scanner(System.in);
         System.out.println("Introduce el nombre del pokemon: ");
         String pokemon = scanner.next();
@@ -58,6 +61,12 @@ public class Main {
         } catch (MalformedURLException e) {
             System.out.println("El nombre de pokemon introducido es incorrecto");
         }
+
+         */
+
+        TriviaController triviaController = new TriviaController();
+        triviaController.importarDatos();
+        triviaController.mostrarDatos();
 
     }
 }
